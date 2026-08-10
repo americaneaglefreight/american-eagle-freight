@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Dashboard | American Eagle Freight</title>
+<link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+<header class="top"><a href="/"><strong>American Eagle Freight</strong></a><div><a href="/track">Customer Tracking</a><button id="logout">Logout</button></div></header>
+<main class="wrap">
+<section id="loginPanel" class="panel narrow">
+  <span class="eyebrow">SECURE ADMIN AREA</span><h1>Admin Login</h1>
+  <p>Sign in to manage shipment records.</p>
+  <form id="loginForm">
+    <label>Username<input id="username" required autocomplete="username"></label>
+    <label>Password<input id="password" type="password" required autocomplete="current-password"></label>
+    <button class="btn" type="submit">Sign In</button>
+    <p id="loginMsg" class="msg"></p>
+  </form>
+</section>
+
+<section id="dashboard" hidden>
+  <div class="dash-head"><div><span class="eyebrow">ADMIN DASHBOARD</span><h1>Shipment Management</h1></div><button class="btn" id="refresh">Refresh</button></div>
+  <div class="grid">
+    <section class="panel">
+      <h2>Create Shipment</h2>
+      <form id="createForm">
+        <label>Customer name<input name="customer_name" required></label>
+        <label>Origin<input name="origin" placeholder="City, country" required></label>
+        <label>Destination<input name="destination" placeholder="City, country" required></label>
+        <label>Service<select name="service" required>
+          <option value="">Select service</option><option>Air Freight</option><option>Sea Freight</option><option>Ground Shipping</option><option>Express Delivery</option><option>Customs Clearance</option><option>Warehousing</option><option>Vehicle Shipping</option><option>Door-to-Door Delivery</option><option>Freight Forwarding</option>
+        </select></label>
+        <label>Status<select name="status"><option>Shipment Created</option><option>Picked Up</option><option>In Transit</option><option>Arrived at Facility</option><option>Out for Delivery</option><option>Delivered</option><option>On Hold</option></select></label>
+        <label>Estimated delivery<input name="estimated_delivery" type="date"></label>
+        <label>Cargo details<textarea name="cargo_details" rows="4"></textarea></label>
+        <button class="btn" type="submit">Create Shipment</button>
+        <p id="createMsg" class="msg"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Update Shipment</h2>
+      <form id="updateForm">
+        <label>Tracking number<input id="updateTracking" required placeholder="AEF123456789"></label>
+        <label>New status<select id="updateStatus"><option>Shipment Created</option><option>Picked Up</option><option>In Transit</option><option>Arrived at Facility</option><option>Out for Delivery</option><option>Delivered</option><option>On Hold</option></select></label>
+        <label>Current location<input id="updateLocation" placeholder="Facility or city"></label>
+        <label>Estimated delivery<input id="updateEstimate" type="date"></label>
+        <button class="btn" type="submit">Update Shipment</button>
+        <p id="updateMsg" class="msg"></p>
+      </form>
+    </section>
+  </div>
+
+  <section class="panel table-panel">
+    <div class="table-head"><h2>All Shipments</h2><input id="search" placeholder="Search tracking, customer, destination..."></div>
+    <div class="table-scroll"><table><thead><tr><th>Tracking</th><th>Customer</th><th>Route</th><th>Service</th><th>Status</th><th>Estimate</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div>
+  </section>
+</section>
+</main>
+<script src="/admin.js"></script>
+</body>
+</html>
